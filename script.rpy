@@ -56,11 +56,9 @@ label start:
     show shadow figure
     show kitsune figure
     
+    show hazuki surprised
     h "what is that?"
     h "I've not seen anything like that before.."
-
-    show hazuki surprised
-    h "Oh it ran away?!"
 
     
     scene bg street corner
@@ -77,6 +75,114 @@ label start:
     show kitsune figure
     k "kekeke"
     k "Come to a better world..."
+
+    show hazuki surprised
+    h "A spirit fox? ... Oh it ran away?!"
+    h "Wait, take me too!"
+    menu:
+
+        h "Should I follow the shadowy figure?"
+
+        "Yes, go to a new world!":
+            jump game
+
+        "No, it's late. Let's go home..":
+            jump home
+
+#first choice split point- strong minded
+    label game:
+
+    show hazuki happy
+
+    h "Let's go on an adventure!"
+
+    "I'll just run down this path, the shadow figure went this way."
+
+    "Somewhere around here..."
+
+    show hazuki surprised
+
+    "Wow - it's all glowing"
+    
+    scene black
+    with dissolve
+
+    scene bg bioluminescene
+    with fade
+
+    "Ahh.."
+
+    "What was I worrying about again?"
+
+    "All these small, small worries."
+
+    "It's all meaningless. What a comforting thought."
+
+    scene bg world
+    with fade
+
+    show hazuki back
+
+    h "Woah, what is this world?"
+    h "Where did that fox go?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#disappointing ending
+    label home:
+
+    "It's too late to be wandering the streets. I must be so tired I'm hallucinating. I guess I'll go home and just carry on with my usual work routine"
+
+    scene black
+    with dissolve
+
+    "I'm such a weak minded person."
+
+    "I never follow up on opportunities even when they appear in front of me. Didn't I wish for the chance to visit another world?"
+
+    "I guess I'll never know the answer to my question now..."
+
+    "{b}Disappointing Ending{/b}."
+
+    return
 
     scene black
     with dissolve
