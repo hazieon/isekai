@@ -5,6 +5,7 @@
 
 define h = Character("Hazuki")
 define k = Character("Kitsune")
+define t = Character("turtle")
 
 # The game starts here.
 
@@ -110,7 +111,7 @@ label start:
     scene bg bioluminescene
     with fade
 
-    "Ahh.."
+    "Ahh.. What is this?"
 
     "What was I worrying about again?"
 
@@ -118,6 +119,9 @@ label start:
 
     "It's all meaningless. What a comforting thought."
 
+
+
+#scene two
     scene bg world
     with fade
 
@@ -125,19 +129,53 @@ label start:
 
     h "Woah, what is this world?"
     h "Where did that fox go?"
+    h "My phone doesn't work here at all and I can't see a single building or road."
+
+    show hazuki curious
+
+    h "Exciting! Let's explore what this world has to offer!"
+
+    show turtle side
+
+    t "ohoh, a human?"
+    t "It's better you don't come any further to this world. You won't be able to turn back."
+
+    "A talking turtle? Alright then."
+    h "Good! I want to leave the city far behind."
+
+    t "Hm, how did you get here?"
+
+    h "Well I followed a fox-like shadow, but I'm not really sure."
+
+    t "ohoh, if you meet the fox spirit again you may be able to return home. You can find the fox up on that mountain at the shrine."
+
+    h "I don't want to leave."
+
+    t "You will. There are no perfect places."
+
+    t "For now I'll help you cross the river."
+
+    menu:
+
+        t "Can I give some advice before we go?"
+
+        "Yes, go to a new world!":
+            jump warning
+
+        "No, it's late.":
+            jump ignorant
 
 
+    label warning:
+        t "Don't eat or drink anything of this realm, else you will become one of us.. Then you will truly be unable to leave."
+    label ignorant:
+        t "Very well..."
 
 
+    scene bg river
+    with fade
 
-
-
-
-
-
-
-
-
+    "Let me give you a ride across the river. The mountain shrine is just beyond the forest. Beware."
 
 
 
