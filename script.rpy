@@ -4,7 +4,7 @@
 # name of the character.
 
 define h = Character("Hazuki")
-
+define k = Character("Kitsune")
 
 # The game starts here.
 
@@ -40,6 +40,46 @@ label start:
 
     h "I wish I could go to another world..."
 
+    scene bg street
+    with fade
+
+    "Finally it's time to get home. The trains have already stopped running, so I'll have to walk."
+
+    show hazuki sad
+
+    h "Yep, I can't see the moon tonight either.."
+
+    "Sigh."
+
+
+    
+    show shadow figure
+    show kitsune figure
+    
+    h "what is that?"
+    h "I've not seen anything like that before.."
+
+    show hazuki surprised
+    h "Oh it ran away?!"
+
+    
+    scene bg street corner
+    with fade
+
+    show kitsune figure
+    with fade
+    "The mysterious shadow stops at the end of an alleyway. Blue light illuminates the path."
+
+    show hazuki surprised
+    with fade
+    h "Hmm? What is that?"
+
+    show kitsune figure
+    k "kekeke"
+    k "Come to a better world..."
+
+    scene black
+    with dissolve
 
 
     # This ends the game.
