@@ -5,12 +5,14 @@
 
 define h = Character("Hazuki")
 define k = Character("Kitsune")
-define t = Character("turtle")
+define t = Character("Turtle")
+define c = Character("Caw")
 
 # The game starts here.
 
 label start:
-
+    $ mind_strength = 0
+    $ world_knowledge = 0
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
@@ -135,12 +137,12 @@ label start:
 
     h "Exciting! Let's explore what this world has to offer!"
 
-    show turtle side
+    show Turtle 
 
     t "ohoh, a human?"
     t "It's better you don't come any further to this world. You won't be able to turn back."
 
-    "A talking turtle? Alright then."
+    "A talking Turtle? Alright then."
     h "Good! I want to leave the city far behind."
 
     t "Hm, how did you get here?"
@@ -159,31 +161,164 @@ label start:
 
         t "Can I give some advice before we go?"
 
-        "Yes, go to a new world!":
+        "Yes, please tell me anything.":
             jump warning
 
-        "No, it's late.":
+        "No, I can do this alone.":
             jump ignorant
 
 
     label warning:
+        # $ menu_flag = true
+        $ world_knowledge +=2
         t "Don't eat or drink anything of this realm, else you will become one of us.. Then you will truly be unable to leave."
+        jump turtle_continue
     label ignorant:
+        # $ menu_flag = false
+        $ mind_strength +=1
         t "Very well..."
+        jump turtle_continue
 
-
+    label turtle_continue:
     scene bg river
     with fade
 
     "Let me give you a ride across the river. The mountain shrine is just beyond the forest. Beware."
 
 
+    scene black
+    with dissolve
+
+    "The walk to the forest wasn't far at all. What was that Turtle worried about? This place is so beautiful."
+
+    scene bg forest entrance
+    show hazuki happy 
+
+    h "Great, there's the forest entrance!"
+
+    show caw happy 
+
+    c "Hey, shiny eyed girl, where are you going?"
+    
+    "A talking crane now, huh?"
+
+    h "I'm heading to the mountain shrine to meet some fox.. I think."
+
+    c "Through the forest? Meet the fox spirit? Wow - an adventurous soul!"
+
+    h "..."
+
+    c "I know shortcuts through the forest. You can take shelter and find food easily there too. Come on, come on."
+
+    h "Oh that would be great, thank you!"
+
+    "Wow everyone here is so kind! I'll be able to meet that fox in no time."
+
+    c "kekeke - come on, come on."
 
 
 
 
+#scene 2.5
+    scene bg forest path
+    show hazuki scared
+    
+    h "It's a bit spooky here actually..."
+    show caw happy
+    c "But you are ADVENTUROUS, right? Right?"
+    h "Yes! I want to see more. But.."
+    c "Come on, come on!"
+     
+
+    scene black
+    with dissolve
+
+    show hazuki sad
+    h "It's getting late"
+    c "Indeed, you must be tired. Have some berries..."
+
+    scene forest fruit
+    with fade
+
+    h "Hmm they don't look that great.. but I am exhausted."
+
+    show caw happy
+    menu:
+        c "Help yourself to the berries! kekeke"
+
+        "Alright, I'll try a few.":
+            jump eat_yes
+
+        "No thanks, I'll be fine.":
+            jump eat_no
+
+    label eat_yes:
+        # $ menu_flag = true
+        $ mind_strength -=1
+        c "Caaaaw kekeke"
+        jump caw_done
+
+    label eat_no:
+        # $ menu_flag = false
+        $ mind_strength +=2
+        c "Caw.."
+        jump caw_done
+
+    label caw_done:
+    
+    scene bg forest dark
+   
+
+    show hazuki surprised
+    h "What the?!"
+    show caw angry #crow!!
+    c "Rotten humans!"
+    c "Dead to the core!"
+    h "That crane was actually a.. crow?!"
+    show caw angry #crow!!
+    
+    c "Give me your EYES!!"
+    c "Give me your soul!"
+    
+    scene bg forest fight
+    with fade
+ 
+    menu:
+        "The crow is attacking me! What should I do?"
+
+        "Fight!":
+            jump fight
+
+        "Run away!":
+            jump run
+        
+label fight:
+        $ mind_strength +=2
+        "Stay back, fiend!"
+        show hazuki fight
+        h "I don't owe you anything!"
+        h "My eyes and my soul are mine."
+        c "Caw!!"
+        show caw dead
+        show hazuki relieved
+        "Phew.. Did I do that? Well.."
+        h "I need to be more careful. Bad creatures are lurking everywhere.. Just like in Tokyo."
+        jump fightover
 
 
+label run: 
+        $ mind_strength -=1
+        $ world_knowledge +=1
+        show hazuki run
+        h "Get out of this forest! I need to.. run!"
+        scene bg forest entrance
+        h "This place really is dangerous."
+        h "Well, I got what i wished for, a change of worlds. and this place is like hell."
+        h "Tokyo was better... I think..."
+        jump fightover
+
+label fightover:
+h "I guess I really need to speak to that fox and find out what is going on."
 
 
 
@@ -205,7 +340,7 @@ label start:
 
 
 #disappointing ending
-    label home:
+label home:
 
     "It's too late to be wandering the streets. I must be so tired I'm hallucinating. I guess I'll go home and just carry on with my usual work routine"
 
