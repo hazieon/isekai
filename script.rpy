@@ -411,7 +411,65 @@ label climbfull:
         h "A different world."
         if world_knowledge >= 2:
             h "Just this world is some sort of HELL."
-        
+
+        show hazuki tired
+        h "Almost there..."
+        show hazuki curious
+        h "I can see the shrine gate now!"
+        scene bg shrine
+        show hazuki happy
+        h "Wow - this must be it."
+        h "So many tori gates.. mysterious."
+        h "And there's that blue light again.. that fox is inside here for sure."
+        jump scenesix
+
+label scenesix:
+        scene black
+        with dissolve
+        scene bg shrine 
+        show hazuki back
+        h "I'm going to find you, spirit fox."
+        scene bg fox room
+        show kitsune smile
+        k "A human? Ah - perhaps that sad girl looking to leave the city?"
+        h "So you remember me? You invited me to this 'new world'..."
+        k "Indeed, indeed."
+
+        menu:
+            "Do you know why I summoned you here?"
+            "Because you are EVIL?":
+                jump evilyes
+            "Because I wanted to come here.":
+                $ mind_strength +=1
+                jump evilno
+
+label evilyes:
+        show hazuki angry
+        show kitsune smile
+        k "kekeke, perhaps so."
+        jump evilcontinue
+
+label evilno:
+        show hazuki beach
+        show kitsune smile
+
+
+
+
+label evilcontinue:
+        k "Well, well. Make yourself comfortable and have some tea and mochi."
+        k "You must be tired afterall."
+        show kitsune tea
+
+    
+
+
+
+        h "What is this place?"
+        k "You don't even know that much yet?"
+        h "It seems like some sort of HELL.."
+        k "Indeed."
+
 
         
     # if points >= 10:
