@@ -86,7 +86,7 @@ label start:
 
         h "Should I follow the shadowy figure?"
 
-        "Yes, go to a new world!":
+        "Yes, it's a chance!":
             jump game
 
         "No, it's late. Let's go home..":
@@ -122,7 +122,6 @@ label start:
     "It's all meaningless. What a comforting thought."
 
 
-
 #scene two
     scene bg world
     with fade
@@ -136,7 +135,8 @@ label start:
     show hazuki curious
 
     h "Exciting! Let's explore what this world has to offer!"
-
+    scene bg river
+    with fade
     show Turtle 
 
     t "ohoh, a human?"
@@ -303,6 +303,7 @@ label fight:
         show hazuki relieved
         "Phew.. Did I do that? Well.."
         h "I need to be more careful. Bad creatures are lurking everywhere.. Just like in Tokyo."
+        h "I guess I really need to speak to that fox and find out what is going on."
         jump fightover
 
 
@@ -315,6 +316,7 @@ label run:
         h "This place really is dangerous."
         h "Well, I got what i wished for, a change of worlds. and this place is like hell."
         h "Tokyo was better... I think..."
+        h "I guess I really need to speak to that fox and get out of this place."
         jump fightover
 
 label fightover:
@@ -322,10 +324,96 @@ label fightover:
         with dissolve
         scene bg forest end
         show hazuki back   
-        h "I guess I really need to speak to that fox and find out what is going on."
-        h "The end of the forest.. finally. The mountain shrine is visible from here."
+        h "Ah - The end of the forest.. finally. The mountain shrine is visible from here."
         h "It's still quite a way to go, but I know what to do now."
 
+        scene bg mountain
+        with fade
+        show hazuki happy 
+        h "The moon is much prettier here, at least."
+        h "I am feeling pretty tired though. Maybe I should get some rest. It's a long way to the top of that mountain."
+        h "Hmm, maybe there's a better way to get there."
+        h "I could ask somebody for help.."
+
+menu:
+    "Should I find someone who could give some tips?"
+    "Yes, let's search for that someone who can help. Maybe there's a shortcut.":
+        jump search
+    "No - I can do this alone. The moonlight is enough to guide me.":
+        jump climb
+
+label search:
+        $ world_knowledge +=1
+        show hazuki curious
+        h "Maybe I can find mr turtle from earlier.. The river is just here."
+        scene bg river 
+        with fade
+        h "I'll just search for a bit..."
+        scene black
+        with dissolve
+        scene bg river 
+        show turtle
+
+        t "Ohoh, so you are still alive hm?"
+        show hazuki happy 
+        h "There you are! Yes, mr turtle, I am trying to reach the mountain top. Do you have any advice?"
+        t "I see. It is indeed far."
+        t "However, there is a shortcut over there, between the trees. It is quite a steep climb, but faster than the winding path."
+        h "Great, so this will get me to the fox?"
+        t "Yes, yes. Be on your way now."
+        # reminder of advice, if true
+        h "Thank you!"
+        show hazuki excited
+        "A shortcut - great! At least some creatures in this world are kind and helpful."
+        jump climbshort
+
+
+label climb:
+        $ mind_strength +=1
+        show hazuki angry
+        h "No time to rely on others for this. I need to figure this out by myself."
+        show hazuki happy
+        h "Let's go!"
+        jump climblong
+
+label climbshort:
+        scene bg cliff small
+        h "This must be the shortcut!"
+        h "Looks pretty steep.. I hope it won't take too long to climb."
+        jump mountain
+
+label climblong:
+        scene bg cliff small
+        h "Yikes, this is going to take a while. But I have time."
+        h "Slow and steady - let's go!"
+        jump mountain
+
+label mountain:
+        scene bg view
+        show hazuki back
+        if world_knowledge < 2:
+            h "What even is this place? Talking animals, shapeshifting, weird food.."
+        if world_knowledge >= 2:
+            h "This world is definitely not meant for humans.. not living ones, anyway."
+        if mind_strength >= 2: 
+            h "But it sure is pretty."
+            h "There is good and bad in everything. Every place, every person."
+            h "I need to seek out the good!"
+            jump climbfull
+        if mind_strength < 2:
+            h "Perhaps Tokyo isn't so bad afterall.."
+            jump climbfull
+
+label climbfull:
+        scene mountain cliff
+        show hazuki sit
+        h "I guess I got exactly what I wished for"
+        h "A different world."
+        if world_knowledge >= 2:
+            h "Just this world is some sort of HELL."
+        
+
+        
     # if points >= 10:
     # jump best_ending
     # elif points >= 5:
