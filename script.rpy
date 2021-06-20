@@ -318,10 +318,24 @@ label run:
         jump fightover
 
 label fightover:
-h "I guess I really need to speak to that fox and find out what is going on."
+        scene black
+        with dissolve
+        scene bg forest end
+        show hazuki back   
+        h "I guess I really need to speak to that fox and find out what is going on."
+        h "The end of the forest.. finally. The mountain shrine is visible from here."
+        h "It's still quite a way to go, but I know what to do now."
 
+    # if points >= 10:
+    # jump best_ending
+    # elif points >= 5:
+    # jump good_ending
+    # elif points >= 1:
+    # jump bad_ending
+    # else:
+    # jump worst_ending
 
-
+    
 
 
 
