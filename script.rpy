@@ -423,6 +423,8 @@ label climbfull:
         h "And there's that blue light again.. that fox is inside here for sure."
         jump scenesix
 
+
+# scene six 
 label scenesix:
         scene black
         with dissolve
@@ -431,16 +433,52 @@ label scenesix:
         h "I'm going to find you, spirit fox."
         scene bg fox room
         show kitsune smile
-        k "A human? Ah - perhaps that sad girl looking to leave the city?"
+        k "A human? Ah - perhaps the sad girl who longed to leave her city?"
         h "So you remember me? You invited me to this 'new world'..."
         k "Indeed, indeed."
+        show kitsune tea
+        menu: 
+            "Well, make yourself comfortable and have some tea and mochi. You must be tired"
+            "Mm, finally something delicious! This will boost my energy.":
+                jump eatyes
+            "No way! This looks like a trap.. ":
+                jump eatno 
+
+label eatyes:
+        show kitsune happy
+        k "Great, help yourself. Consider it a welcome to this world."
+        "Sounds a bit suspicious.."
+        "But it looks so delicious, I'll eat up! "
+        show hazuki happy
+        h "Thank you!"
+        $ mind_strength -= 1
+        $ world_knowledge -= 1
+        jump continue1
+
+label eatno:
+        show hazuki angry
+        "Way too suspicious.. I think I'll never leave if I eat this."
+        "I'm so hungry, but that will have to wait"
+        "No thank you.. I'll pass."
+        $ mind_strength += 1
+        jump continue1
+    
+
+label continue1:
+        show kitsune happy
+        k "Very well.."
+        k "This realm must feel quite different to your human city life."
+        if world_knowledge >3:
+            h "It sure is. "
+            h "But it's similar in that it's full of lost souls.."
+        else:
+            h "Sure. It's completely different."
 
         menu:
             "Do you know why I summoned you here?"
             "Because you are EVIL?":
                 jump evilyes
             "Because I wanted to come here.":
-                $ mind_strength +=1
                 jump evilno
 
 label evilyes:
@@ -450,6 +488,7 @@ label evilyes:
         jump evilcontinue
 
 label evilno:
+        $ mind_strength +=1
         show hazuki beach
         show kitsune smile
 
@@ -457,9 +496,9 @@ label evilno:
 
 
 label evilcontinue:
-        k "Well, well. Make yourself comfortable and have some tea and mochi."
+        k ""
         k "You must be tired afterall."
-        show kitsune tea
+      
 
     
 
