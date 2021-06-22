@@ -437,6 +437,7 @@ label scenesix:
         h "So you remember me? You invited me to this 'new world'..."
         k "Indeed, indeed."
         show kitsune tea
+
         menu: 
             "Well, make yourself comfortable and have some tea and mochi. You must be tired"
             "Mm, finally something delicious! This will boost my energy.":
@@ -491,23 +492,27 @@ label evilno:
         $ mind_strength +=1
         show hazuki beach
         show kitsune smile
-
+        jump evilcontinue
 
 
 
 label evilcontinue:
-        k ""
-        k "You must be tired afterall."
+        k "What did you learn about this world?"
+        h "Basically that I can't trust anyone.. Some may seem kind, but are actually snakes."
+        if world_knowledge >3 :
+            h "...or ghosts?"
+        k "So you met some deceptive creatures, hmm? Is your human city better?"
+        h "..."
+        h "Hah, not really. Plenty of sly creatures there too."
+        h "But in this world I learnt that there is 'bad' or darkness in everything. Every person, every place."
+        h "I need to focus on seeking out the 'good' and the light in the world."
+        if mind_strength >3:
+            h "I've been too focused on negativity.. but not anymore!"
+        k "Interesting.."
       
 
     
 
-
-
-        h "What is this place?"
-        k "You don't even know that much yet?"
-        h "It seems like some sort of HELL.."
-        k "Indeed."
 
 
         
