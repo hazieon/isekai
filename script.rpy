@@ -509,9 +509,32 @@ label evilcontinue:
         if mind_strength >3:
             h "I've been too focused on negativity.. but not anymore!"
         k "Interesting.."
-      
 
-    
+        menu:
+            k "So.. Are you ready to return home?"
+            "Yes, get me out of this place. I have more hope for the city now.":
+                jump downset_day_escape
+            "Actually I quite like this place.. I'll stay":
+                jump downset_day_remain
+label downset_day_escape:
+            if mind_strength >= 3 && world_knowledge >= 3:
+                jump goodending_escape
+            else: 
+                jump badending_remain
+
+label downset_day_remain:
+            if mind_strength >= 3 && world_knowledge >= 3:       
+                jump goodending_remain
+            else:
+                jump badending_curse
+        
+
+
+
+label goodending_escape:
+label goodending_remain:
+label badending_remain:
+label badending_curse:
 
 
 
