@@ -16,10 +16,9 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-
+    
     scene bg city
     with fade
-
     "Tokyo is always busy, but in Summer the humidity makes it feel even more crowded. The skyscrapers all around make it feel like we are caged in the city. "
 
     "I can't even see the moon."
@@ -517,26 +516,99 @@ label evilcontinue:
             "Actually I quite like this place.. I'll stay":
                 jump downset_day_remain
 label downset_day_escape:
-            if mind_strength >= 3 && world_knowledge >= 3:
+            if mind_strength >= 4:
                 jump goodending_escape
             else: 
                 jump badending_remain
 
 label downset_day_remain:
-            if mind_strength >= 3 && world_knowledge >= 3:       
+            if world_knowledge >= 4:       
                 jump goodending_remain
             else:
                 jump badending_curse
-        
 
-
-
+# success, escape
 label goodending_escape:
+    show kitsune happy
+    k "Very few human souls that fall into the afterlife make it this far."
+    k "And even fewer of those manage to return to their mortal lives."
+    k "You fought well. And hopefully learnt some life lessons too."
+    show hazuki happy
+    h "I sure did."
+    h "You won't see me here again for a long time."
+    show kitsune happy
+    k "kekeke, well you know where to go next time. Farewell, lonely girl."
+    show hazuki happy
+    h "I'm going to give my city another chance. Goodbye!"
+    "{b}Hopeful Ending{/b}."
+    scene bg city 
+    show hazuki back
+    scene black
+    with dissolve
+    return
+    
+
+
+# success, remain
 label goodending_remain:
+    show kitsune happy
+    k "Very few human souls that fall into the afterlife make it this far."
+    k "I admire your strength."
+    h "Thank you - I am curious to discover more about the wonders of this realm."
+    k "The decision cannot be undone, but you will forget your old life in time anyway."
+    show hazuki happy
+    h "Good. I chose this path, and I stand by it."
+    k "Hm, well you know where to find me..."
+    h "This was all in my plan. I got what I wished for."
+    "{b}Strong Ending{/b}."
+    scene bg river 
+    show hazuki back
+    scene black
+    with dissolve
+    return
+    
+
+
+# failure, remain
 label badending_remain:
+    show kitsune angry
+    k "Very few human souls that fall into the afterlife make it this far."
+    k "And even fewer of those manage to return to their mortal lives."
+    k "You are one of those who will remain here for eternity."
+    show hazuki scared
+    h "What are you saying? This is... really hell?"
+    show kitsune happy
+    k "kekeke. So naive. So slow. What a weak, weak mortal."
+    k "Once you fall into the afterlife, you can't simply leave."
+    k "Before you know it, you will become what you hated and feared the most.. A lost soul."
+    h "Wait... I.. This world is not what I imagined."
+    k "You got exactly what you wished for."
+    k "Farewell."
+    "{b}Trapped Ending{/b}."
+    scene black
+    with dissolve
+    return
+
+# failure, curse
 label badending_curse:
-
-
+    show kitsune angry
+    k "You think it will be nice to stay here?"
+    k "kekeke"
+    k "Turning to the afterlife is not an easy way out"
+    show hazuki scared
+    h "Afterlife? This is... really hell?"
+    show kitsune happy
+    k "Weak, weak mortal. You will regret your choice to stay."
+    k "Before you know it, you will become what you hated and feared the most.. A lost soul."    
+    show hazuki scared
+    h "Wait... I.. This world is not what I imagined."
+    k "Well, You got exactly what you wished for."
+    k "Farewell."
+    "{b}Cursed Ending{/b}."
+    scene black
+    with dissolve
+    return
+    
 
         
     # if points >= 10:
