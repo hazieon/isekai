@@ -253,7 +253,7 @@ label start:
 
     label eat_yes:
         # $ menu_flag = true
-        $ mind_strength -=1
+        $ mind_strength -=2
         c "Caaaaw kekeke"
         jump caw_done
 
@@ -273,7 +273,7 @@ label start:
     show caw angry #crow!!
     c "Rotten humans!"
     c "Dead to the core!"
-    h "That crane was actually a.. crow?!"
+    h "This crane is actually a.. crow?!"
     show caw angry #crow!!
     
     c "Give me your EYES!!"
@@ -294,6 +294,7 @@ label start:
         
 label fight:
         $ mind_strength +=2
+        $ world_knowledge -=1
         "Stay back, fiend!"
         show hazuki fight
         h "I don't owe you anything!"
@@ -308,13 +309,12 @@ label fight:
 
 
 label run: 
-        $ mind_strength -=1
-        $ world_knowledge +=1
+        $ mind_strength -=2
+        $ world_knowledge +=2
         show hazuki run
         h "Get out of this forest! I need to.. run!"
         scene bg forest entrance
         h "This place really is dangerous."
-        h "Well, I got what i wished for, a change of worlds. and this place is like hell."
         h "Tokyo was better... I think..."
         h "I guess I really need to speak to that fox and get out of this place."
         jump fightover
@@ -345,6 +345,7 @@ menu:
 
 label search:
         $ world_knowledge +=1
+        $ mind_strength -=1
         show hazuki curious
         h "Maybe I can find mr turtle from earlier.. The river is just here."
         scene bg river 
@@ -370,7 +371,7 @@ label search:
 
 
 label climb:
-        $ mind_strength +=1
+        $ mind_strength +=2
         show hazuki angry
         h "No time to rely on others for this. I need to figure this out by myself."
         show hazuki happy
@@ -408,11 +409,10 @@ label mountain:
 label climbfull:
         scene mountain cliff
         show hazuki sit
-        h "I guess I got exactly what I wished for"
-        h "A different world."
+        h "All this is quite overwhelming.."
+        h "How did I end up here again?"
         if world_knowledge >= 2:
-            h "Just this world is some sort of HELL."
-
+            h "I slipped into this realm somehow when I followed that light and the fox."
         show hazuki tired
         h "Almost there..."
         show hazuki curious
@@ -438,11 +438,12 @@ label scenesix:
         h "So you remember me? You invited me to this 'new world'..."
         k "Indeed, indeed."
         show kitsune tea
-
+        k "Well, make yourself comfortable and have some tea and mochi. You must be tired"
+        h "Oh, finally some refreshing food!"
 #choice six
         menu: 
-            "Well, make yourself comfortable and have some tea and mochi. You must be tired"
-            "Mm, finally something delicious! This will boost my energy.":
+            "Shall I eat the snacks?"
+            "Yes- It looks delicious! This will boost my energy.":
                 jump eatyes
             "No way! This looks like a trap.. ":
                 jump eatno 
@@ -454,7 +455,7 @@ label eatyes:
         "But it looks so delicious, I'll eat up! "
         show hazuki happy
         h "Thank you!"
-        $ mind_strength -= 1
+        $ mind_strength -= 3
         $ world_knowledge -= 1
         jump continue1
 
@@ -462,8 +463,9 @@ label eatno:
         show hazuki angry
         "Way too suspicious.. I think I'll never leave if I eat this."
         "I'm so hungry, but that will have to wait"
-        "No thank you.. I'll pass."
-        $ mind_strength += 1
+        h "No thank you.. I'll pass."
+        $ mind_strength += 2
+        $ world_knowledge += 1
         jump continue1
     
 
@@ -574,6 +576,7 @@ label goodending_remain:
 
 # failure, remain
 label badending_remain:
+    scene bg shrine
     show kitsune angry
     k "Very few human souls that fall into the afterlife make it this far."
     k "And even fewer of those manage to return to their mortal lives."
@@ -581,12 +584,18 @@ label badending_remain:
     show hazuki scared
     h "What are you saying? This is... really hell?"
     show kitsune happy
-    k "kekeke. So naive. So slow. What a weak, weak mortal."
-    k "Once you fall into the afterlife, you can't simply leave."
-    k "Before you know it, you will become what you hated and feared the most.. A lost soul."
+    k "So naive. So slow. What a weak, weak mortal. How do you trust so easily?"
+    show caw 
+    c "kekeke!"
+    c"Once you fall into the afterlife, you can't simply leave."
+    c"Before you know it, you will become what you hated and feared the most.. A lost soul."
+    show hazuki surprised
+    h "That crow?! You are not the fox at all!!"
+    show hazuki scared
     h "Wait... I.. This world is not what I imagined."
-    k "You got exactly what you wished for."
-    k "Farewell."
+    c"You got exactly what you wished for."
+    show caw happy
+    c"Farewell."
     "{b}Trapped Ending{/b}."
     scene black
     with dissolve
