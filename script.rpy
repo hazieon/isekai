@@ -81,6 +81,7 @@ label start:
     show hazuki surprised
     h "A spirit fox? ... Oh it ran away?!"
     h "Wait, take me too!"
+#choice one
     menu:
 
         h "Should I follow the shadowy figure?"
@@ -155,9 +156,8 @@ label start:
     t "You will. There are no perfect places."
 
     t "For now I'll help you cross the river."
-
+    #choice two
     menu:
-
         t "Can I give some advice before we go?"
 
         "Yes, please tell me anything.":
@@ -174,7 +174,6 @@ label start:
         jump turtle_continue
     label ignorant:
         # $ menu_flag = false
-        $ mind_strength +=1
         t "Very well..."
         jump turtle_continue
 
@@ -242,6 +241,7 @@ label start:
     h "Hmm they don't look that great.. but I am exhausted."
 
     show caw happy
+    #choice three
     menu:
         c "Help yourself to the berries! kekeke"
 
@@ -282,6 +282,7 @@ label start:
     scene bg forest fight
     with fade
  
+ #choice four
     menu:
         "The crow is attacking me! What should I do?"
 
@@ -334,6 +335,7 @@ label fightover:
         h "Hmm, maybe there's a better way to get there."
         h "I could ask somebody for help.."
 
+#choice five
 menu:
     "Should I find someone who could give some tips?"
     "Yes, let's search for that someone who can help. Maybe there's a shortcut.":
@@ -390,16 +392,16 @@ label climblong:
 label mountain:
         scene bg view
         show hazuki back
-        if world_knowledge < 2:
+        if world_knowledge < 3:
             h "What even is this place? Talking animals, shapeshifting, weird food.."
-        if world_knowledge >= 2:
+        if world_knowledge >= 3:
             h "This world is definitely not meant for humans.. not living ones, anyway."
-        if mind_strength >= 2: 
+        if mind_strength >= 3: 
             h "But it sure is pretty."
             h "There is good and bad in everything. Every place, every person."
             h "I need to seek out the good!"
             jump climbfull
-        if mind_strength < 2:
+        if mind_strength < 3:
             h "Perhaps Tokyo isn't so bad afterall.."
             jump climbfull
 
@@ -437,6 +439,7 @@ label scenesix:
         k "Indeed, indeed."
         show kitsune tea
 
+#choice six
         menu: 
             "Well, make yourself comfortable and have some tea and mochi. You must be tired"
             "Mm, finally something delicious! This will boost my energy.":
@@ -473,7 +476,7 @@ label continue1:
             h "But it's similar in that it's full of lost souls.."
         else:
             h "Sure. It's completely different."
-
+#choice seven
         menu:
             "Do you know why I summoned you here?"
             "Because you are EVIL?":
@@ -498,7 +501,7 @@ label evilno:
 label evilcontinue:
         k "What did you learn about this world?"
         h "Basically that I can't trust anyone.. Some may seem kind, but are actually snakes."
-        if world_knowledge >3 :
+        if world_knowledge >=3 :
             h "...or ghosts?"
         k "So you met some deceptive creatures, hmm? Is your human city better?"
         h "..."
@@ -508,7 +511,7 @@ label evilcontinue:
         if mind_strength >3:
             h "I've been too focused on negativity.. but not anymore!"
         k "Interesting.."
-
+#choice eight
         menu:
             k "So.. Are you ready to return home?"
             "Yes, get me out of this place. I have more hope for the city now.":
@@ -516,13 +519,13 @@ label evilcontinue:
             "Actually I quite like this place.. I'll stay":
                 jump downset_day_remain
 label downset_day_escape:
-            if mind_strength >= 4:
+            if mind_strength >= 5:
                 jump goodending_escape
             else: 
                 jump badending_remain
 
 label downset_day_remain:
-            if world_knowledge >= 4:       
+            if world_knowledge >= 3:       
                 jump goodending_remain
             else:
                 jump badending_curse
