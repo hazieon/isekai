@@ -155,10 +155,9 @@ label start:
 
     t "You will. There are no perfect places."
 
-    t "For now I'll help you cross the river."
     #choice two
     menu:
-        t "Can I give some advice before we go?"
+        t "Can I give some advice before you go?"
 
         "Yes, please tell me anything.":
             jump warning
@@ -171,17 +170,19 @@ label start:
         # $ menu_flag = true
         $ world_knowledge +=2
         t "Don't eat or drink anything of this realm, else you will become one of us.. Then you will truly be unable to leave."
+        t "Only those who show mental strength will thrive."
+        t ""
         jump turtle_continue
     label ignorant:
         # $ menu_flag = false
-        t "Very well..."
+        t "Very well... Passing up on opportunities to learn more of this world will only slow you down.. or worse.."
         jump turtle_continue
 
     label turtle_continue:
     scene bg river
     with fade
 
-    "Let me give you a ride across the river. The mountain shrine is just beyond the forest. Beware."
+    t "Let me give you a ride across the river. The mountain shrine is just beyond the forest. Beware."
 
 
     scene black
@@ -502,7 +503,7 @@ label evilno:
 
 label evilcontinue:
         k "What did you learn about this world?"
-        h "Basically that I can't trust anyone.. Some may seem kind, but are actually snakes."
+        h "It's hard to know who to trust here.. Some may seem kind, but are actually snakes."
         if world_knowledge >=3 :
             h "...or ghosts?"
         k "So you met some deceptive creatures, hmm? Is your human city better?"
